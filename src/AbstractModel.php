@@ -65,6 +65,7 @@ class AbstractModel
     {
         $this->initWPDB();
         $this->addColumns($columns);
+        $this->createTable();
     }
 
     /**
@@ -85,6 +86,8 @@ class AbstractModel
     
             $prefix = $wpdb->prefix . ($prefix ? $prefix . '_' : null);
             $this->tableName = $prefix . $tableName;
+        } else {
+            $this->tableName = $wpdb->prefix . $this->tableName;
         }
     }
 
